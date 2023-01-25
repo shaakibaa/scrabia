@@ -29,7 +29,7 @@ class DBManager:
 
 
 
-    def df_to_table(self, df, table_name, if_exists='append'):
+    def df_to_table(self, df, table_name, if_exists='replace'):
         """Dump dataframe to psql database"""
         df.to_sql(table_name, self.engine, if_exists = if_exists, index = False)
 
@@ -39,6 +39,7 @@ if __name__=="__main__":
     params = [('title', 'text'),
                 ('company', 'text'),
                 ('location', 'text'),
-                ('apply', 'text')]
-    obj.create_table('scrabia', params)
-    obj.df_to_table(pd.DataFrame([['1', '2', '3', '4']], columns=['title', 'company', 'location', 'apply']), 'scrabia')
+                ('apply', 'text'),
+                ('description', 'text'),]
+    obj.create_table('jobs', params)
+    obj.df_to_table(pd.DataFrame([['1', '2', '3', '4', '5']], columns=['title', 'company', 'location', 'apply', 'description']), 'scrabia')

@@ -15,6 +15,7 @@ db_manager = DBManager('localhost', 5432, 'scrabia', 'postgres', 'postgres')
 params = [('title', 'text'),
             ('company', 'text'),
             ('location', 'text'),
-            ('apply', 'text')]
+            ('apply', 'text'),
+            ('description', 'text')]
 db_manager.create_table('scrabia', params)
 db_manager.df_to_table(linkedin_obj._df_job_result, 'scrabia')
