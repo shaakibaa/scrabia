@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from utils.keyword_extractor import keyword_extractor
 
 
 def request_response(url):
@@ -32,6 +33,7 @@ class LinkedinSearcher:
             job_location = job.find('span', class_='job-search-card__location').text.strip()
             job_link = job.find('a', class_='base-card__full-link')['href']
             job_soup = request_response(job_link)
+            # adding job description
             job_description = job_soup.find_all('div', class_='show-more-less-html__markup show-more-less-html__markup--clamp-after-5')[0].text.strip()
             
 
@@ -41,6 +43,9 @@ class LinkedinSearcher:
                 'Location' : job_location,
                 'Apply': job_link,
                 'Description': job_description}, ignore_index = True)
+
+        # adding keywords
+        self._df_job_result['Keywords'] = self._df_job_result['Description'].apply(keyword_extractor)
 
         if self.page_number < 100:
             self.page_number = self.page_number + 25
@@ -62,4 +67,4 @@ if __name__=="__main__":
     obj = LinkedinSearcher()
     obj.job_scraper(url_ds, 0)
     print(obj._df_job_result)
-
+    # obj._df_job_result.to_csv('test.csv', index=False)

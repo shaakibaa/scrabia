@@ -16,6 +16,7 @@ params = [('title', 'text'),
             ('company', 'text'),
             ('location', 'text'),
             ('apply', 'text'),
-            ('description', 'text')]
+            ('description', 'text'),
+            ('keywords', 'text')]
 db_manager.create_table('scrabia', params)
 db_manager.df_to_table(linkedin_obj._df_job_result, 'scrabia')
