@@ -5,13 +5,19 @@ from utils.keyword_extractor import keyword_extractor
 
 
 def request_response(url):
+
+    # getting the webpage, creating a Response object
     response = requests.get(url)
+
+    # extracting the source code of the page & passing the source code to BeautifulSoup to create a BeautifulSoup object for it 
     soup = BeautifulSoup(response.content,'html.parser')
     return soup
 
 
 class LinkedinSearcher:
     def __init__(self):
+
+        # init jobs attributes
         self.webpage_url = None
         self.page_number = None
         self.jobs = None
@@ -55,13 +61,10 @@ class LinkedinSearcher:
             return
 
     
-    def person_scraper(self):
-        pass
-
-
 
 if __name__=="__main__":
 
+    # job scraping
     url_ml = 'https://www.linkedin.com/jobs/search/?currentJobId=3428654835&f_TPR=r86400&geoId=100506914&keywords=machine%20learning%20engineer&location=Europe&refresh=true'
     url_ds = 'https://www.linkedin.com/jobs/search/?currentJobId=3428654835&f_TPR=r86400&geoId=100506914&keywords=data%20scientist&location=Europe&refresh=true'
     obj = LinkedinSearcher()
