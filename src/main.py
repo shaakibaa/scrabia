@@ -8,7 +8,7 @@ url_ds = 'https://www.linkedin.com/jobs/search/?currentJobId=3428654835&f_TPR=r8
 
 # scrape linkedin
 linkedin_obj = LinkedinSearcher()
-linkedin_obj.job_scraper(url_ml, 0)
+linkedin_obj.job_scraper(url_ds, 0)
 
 # insert into db
 db_manager = DBManager('localhost', 5432, 'scrabia', 'postgres', 'postgres')
